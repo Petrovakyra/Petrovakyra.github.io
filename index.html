@@ -31,15 +31,10 @@
     }
 
     @keyframes gridMove {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: 600px 600px;
-      }
+      from { background-position: 0 0; }
+      to { background-position: 600px 600px; }
     }
 
-    /* GLOW FUNDO */
     body::after {
       content: "";
       position: fixed;
@@ -48,9 +43,22 @@
       z-index: -1;
     }
 
+    /* ANIMAÇÃO DE ENTRADA */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     header {
       padding: 120px 20px 90px;
       text-align: center;
+      animation: fadeUp 1.2s ease forwards;
     }
 
     /* GLITCH */
@@ -88,19 +96,14 @@
 
     @keyframes glitch {
       0%, 100% { transform: none; }
-      20% { transform: skew(-1deg); }
-      40% { transform: skew(1deg); }
-      60% { transform: translateX(-2px); }
-      80% { transform: translateX(2px); }
+      50% { transform: skew(-1deg); }
     }
 
     @keyframes glitchTop {
-      0%, 100% { transform: translate(0); }
       50% { transform: translate(-3px, -2px); }
     }
 
     @keyframes glitchBottom {
-      0%, 100% { transform: translate(0); }
       50% { transform: translate(3px, 2px); }
     }
 
@@ -116,7 +119,12 @@
       padding: 60px 20px;
       max-width: 900px;
       margin: auto;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards;
     }
+
+    section:nth-of-type(1) { animation-delay: .6s; }
+    section:nth-of-type(2) { animation-delay: 1s; }
 
     .card {
       background: rgba(255,255,255,.04);
@@ -165,6 +173,8 @@
       font-size: 12px;
       opacity: .4;
       letter-spacing: 2px;
+      animation: fadeUp 1.2s ease forwards;
+      animation-delay: 1.4s;
     }
   </style>
 </head>
@@ -179,9 +189,9 @@
   <div class="card">
     <h2>Sobre mim</h2>
     <p>
-     Sou Kyra, designer com foco em criar artes simples, modernas e com personalidade.
-Gosto de transformar ideias em visuais claros, bonitos e bem organizados.
-Meu objetivo é entregar designs que chamem atenção e passem identidade.
+      Sou Kyra, designer com foco em criar artes simples, modernas e com personalidade.
+      Gosto de transformar ideias em visuais claros, bonitos e bem organizados.
+      Meu objetivo é entregar designs que chamem atenção e passem identidade.
     </p>
   </div>
 </section>
