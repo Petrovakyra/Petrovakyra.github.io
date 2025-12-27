@@ -5,115 +5,163 @@
   <title>Kyra • Designer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #111 0%, #050505 60%);
+      background: #050505;
       color: #fff;
       overflow-x: hidden;
     }
 
-    /* BACKGROUND GRÁFICO */
+    /* GRID ANIMADO */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px),
-        linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px);
+        linear-gradient(90deg, rgba(0,255,255,.06) 1px, transparent 1px),
+        linear-gradient(rgba(0,255,255,.06) 1px, transparent 1px);
       background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes gridMove {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 600px 600px;
+      }
+    }
+
+    /* GLOW FUNDO */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0,255,255,.12), transparent 60%);
       z-index: -1;
     }
 
     header {
-      padding: 100px 20px 80px;
+      padding: 120px 20px 90px;
       text-align: center;
-      position: relative;
     }
 
-    header h1 {
+    /* GLITCH */
+    .glitch {
+      position: relative;
       font-family: 'Orbitron', sans-serif;
-      font-size: 56px;
-      letter-spacing: 4px;
-      margin: 0;
-      text-shadow: 0 0 20px rgba(0,255,255,.4);
+      font-size: 64px;
+      letter-spacing: 6px;
+      color: cyan;
+      text-transform: uppercase;
+      animation: glitch 2.5s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .glitch::before {
+      color: #ff00ff;
+      clip-path: inset(0 0 60% 0);
+      animation: glitchTop 2.5s infinite;
+    }
+
+    .glitch::after {
+      color: #00ffff;
+      clip-path: inset(60% 0 0 0);
+      animation: glitchBottom 2.5s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: none; }
+      20% { transform: skew(-1deg); }
+      40% { transform: skew(1deg); }
+      60% { transform: translateX(-2px); }
+      80% { transform: translateX(2px); }
+    }
+
+    @keyframes glitchTop {
+      0%, 100% { transform: translate(0); }
+      50% { transform: translate(-3px, -2px); }
+    }
+
+    @keyframes glitchBottom {
+      0%, 100% { transform: translate(0); }
+      50% { transform: translate(3px, 2px); }
     }
 
     header p {
-      margin-top: 12px;
+      margin-top: 14px;
       opacity: .7;
       letter-spacing: 2px;
-      text-transform: uppercase;
       font-size: 14px;
-    }
-
-    /* LINHA DECORATIVA */
-    .line {
-      width: 120px;
-      height: 2px;
-      margin: 30px auto 0;
-      background: linear-gradient(90deg, transparent, cyan, transparent);
-      box-shadow: 0 0 10px cyan;
+      text-transform: uppercase;
     }
 
     section {
       padding: 60px 20px;
       max-width: 900px;
       margin: auto;
-      position: relative;
+    }
+
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,255,255,.18);
+      border-radius: 18px;
+      padding: 35px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 40px rgba(0,255,255,.08);
     }
 
     h2 {
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 3px;
-      font-size: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    section p {
+    .card p {
       max-width: 600px;
-      opacity: .85;
       line-height: 1.8;
+      opacity: .85;
     }
 
-    /* CARD FUTURISTA */
-    .card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(0,255,255,.15);
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 0 30px rgba(0,255,255,.05);
-      backdrop-filter: blur(6px);
-    }
-
-    /* BOTÃO */
     .contato a {
       display: inline-block;
-      margin-top: 25px;
-      padding: 14px 26px;
+      margin-top: 28px;
+      padding: 14px 30px;
       border-radius: 40px;
       color: cyan;
       text-decoration: none;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 2px;
       border: 1px solid cyan;
-      box-shadow: 0 0 15px rgba(0,255,255,.4);
-      transition: all .3s ease;
+      box-shadow: 0 0 18px rgba(0,255,255,.4);
+      transition: .3s;
     }
 
     .contato a:hover {
       background: cyan;
       color: #000;
-      box-shadow: 0 0 30px cyan;
+      box-shadow: 0 0 35px cyan;
     }
 
     footer {
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px;
       font-size: 12px;
       opacity: .4;
       letter-spacing: 2px;
@@ -123,18 +171,17 @@
 <body>
 
 <header>
-  <h1>KYRA</h1>
+  <div class="glitch" data-text="KYRA">KYRA</div>
   <p>Designer Gráfica</p>
-  <div class="line"></div>
 </header>
 
 <section>
   <div class="card">
     <h2>Sobre mim</h2>
     <p>
-      Sou Kyra, designer com foco em criar visuais modernos,
-      minimalistas e com identidade forte. Curto estética futurista,
-      tecnologia e designs que passam atitude e personalidade.
+      Sou a Kyra, designer gráfica focada em visuais modernos,
+      futuristas e com personalidade forte. Curto tecnologia,
+      estética cyber e designs que passam atitude.
     </p>
   </div>
 </section>
